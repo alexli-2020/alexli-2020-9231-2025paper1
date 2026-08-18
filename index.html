@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2025 年 9231 进阶数学 Paper 1 分类真题</title>
+<style>
+:root{
+  --bg:#eef1f6; --panel:#ffffff; --ink:#1d2733; --muted:#5e6b7a;
+  --line:#dde3ec; --line-soft:#e8edf4;
+  --accent:#2059c4; --accent-soft:#e7eefb; --accent-ink:#17439a;
+  --green:#1d7a4f; --green-soft:#e9f6ef; --head:#0f2747;
+  --shadow:0 1px 2px rgba(20,40,80,.05),0 6px 18px rgba(20,40,80,.06);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
+  line-height:1.65;font-size:15px}
+.app{display:flex;min-height:100vh}
+.sidebar{width:300px;flex:0 0 300px;background:var(--panel);border-right:1px solid var(--line);
+  padding:22px 18px 30px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.brand h1{font-size:19px;margin:0 0 2px;color:var(--head);letter-spacing:.3px}
+.brand p{margin:0 0 16px;font-size:12px;color:var(--muted)}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--bg);border-radius:10px;padding:3px;gap:3px;margin-bottom:14px}
+.seg button{border:0;background:transparent;padding:8px 0;border-radius:8px;font-size:13.5px;
+  color:var(--muted);cursor:pointer;font-weight:600}
+.seg button.active{background:var(--panel);color:var(--accent-ink);box-shadow:0 1px 3px rgba(20,40,80,.12)}
+#search{width:100%;border:1px solid var(--line);background:#fbfcfe;border-radius:10px;
+  padding:9px 12px;font-size:13.5px;margin-bottom:16px;color:var(--ink)}
+#search:focus{outline:2px solid var(--accent);outline-offset:1px;background:#fff}
+.side-label{font-size:12px;color:var(--muted);margin:0 0 8px;font-weight:700;letter-spacing:.5px}
+.ch-nav{display:flex;flex-direction:column;gap:5px;margin-bottom:18px}
+.ch-btn{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;
+  border:1px solid transparent;background:transparent;border-radius:9px;padding:9px 11px;
+  cursor:pointer;text-align:left;transition:background .15s,border-color .15s}
+.ch-btn:hover{background:#f4f7fc}
+.ch-btn.active{background:var(--accent-soft);border-color:#c9d9f5}
+.ch-btn .ch-name{font-size:13.5px;font-weight:600;color:var(--ink)}
+.ch-btn.active .ch-name{color:var(--accent-ink)}
+.ch-btn .ch-stat{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.overview{border-top:1px solid var(--line);padding-top:14px}
+.overview h3{font-size:13px;margin:0 0 10px;color:var(--head)}
+.ov-row{display:flex;align-items:baseline;gap:8px;padding:5px 2px;border-bottom:1px dashed var(--line-soft);font-size:12.5px}
+.ov-row .ov-t{font-weight:600;color:var(--ink);min-width:30px}
+.ov-row .ov-s{flex:1;color:var(--muted);font-size:11.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ov-row .ov-m{color:var(--accent-ink);font-weight:600}
+.ov-foot{margin-top:10px;font-size:12px;color:var(--muted);text-align:right}
+.main{flex:1;min-width:0;padding:26px 28px 70px}
+.main-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.main-head h2{font-size:22px;margin:0 0 3px;color:var(--head)}
+.main-head .sub{color:var(--muted);font-size:13px;margin:0}
+.main-head .count{background:var(--panel);border:1px solid var(--line);border-radius:999px;
+  padding:6px 14px;font-size:12.5px;color:var(--muted)}
+.q-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  box-shadow:var(--shadow);padding:18px 20px;margin:0 0 18px}
+.q-top{display:flex;align-items:center;gap:10px;margin-bottom:2px}
+.ch-badge{background:var(--accent-soft);color:var(--accent-ink);border-radius:7px;
+  font-size:12px;font-weight:700;padding:3px 9px}
+.q-top h3{font-size:17px;margin:0;color:var(--head)}
+.meta{font-size:12.5px;color:var(--muted);margin:2px 0 8px}
+.topic{font-size:13.5px;color:var(--accent-ink);margin:0 0 12px;font-weight:600;
+  background:var(--accent-soft);border-radius:8px;padding:7px 12px}
+.qb{margin-top:12px}
+.qb figure{margin:0 0 12px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.qb img{display:block;width:100%;height:auto}
+.qb figcaption{font-size:11.5px;color:var(--muted);padding:5px 11px;background:#fafbfd;border-top:1px solid var(--line)}
+.a-text figure{border-color:#cfe5d8}
+.a-text figcaption{background:var(--green-soft);color:var(--green)}
+body.mode-answer .q-text{display:none}
+body.mode-question .a-text{display:none}
+.hidden{display:none !important}
+.foot{margin-top:26px;color:var(--muted);font-size:12px;text-align:center}
+@media (max-width:860px){
+  .app{flex-direction:column}
+  .sidebar{width:100%;flex:none;height:auto;position:static;border-right:0;border-bottom:1px solid var(--line)}
+  .ch-nav{flex-direction:row;flex-wrap:wrap}
+  .ch-btn{width:auto}
+  .main{padding:20px 14px 60px}
+}
+@media print{
+  body{background:#fff}
+  .sidebar,.seg,#search,.count,.foot{display:none !important}
+  .main{padding:0}
+  .q-card{border:1px solid #ccc;box-shadow:none;break-inside:avoid}
+  .qb img{max-width:100%}
+}
+</style>
+</head>
+<body class="mode-question">
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">
+    <h1>2025 年 9231 进阶数学 P1 真题</h1>
+    <p>按考纲章节分类 · 6 套卷 · 42 题 · 题目与答案均为原卷截图</p>
+  </div>
+  <div class="seg" role="tablist" aria-label="显示模式">
+    <button type="button" id="tabQ" class="active" aria-pressed="true">题目</button>
+    <button type="button" id="tabA" aria-pressed="false">答案</button>
+  </div>
+  <input id="search" type="search" placeholder="搜索章节 / 考点 / 关键词…" aria-label="搜索">
+  <p class="side-label">章节标签</p>
+  <nav class="ch-nav" role="tablist" aria-label="章节标签">
+<button type="button" class="ch-btn active" data-ch="all"><span class="ch-name">全部题目</span><span class="ch-stat">42 题 · 450 分</span></button>
+<button type="button" class="ch-btn" data-ch="1.1"><span class="ch-name">1.1 多项式方程的根</span><span class="ch-stat">6 题 · 51 分</span></button>
+<button type="button" class="ch-btn" data-ch="1.2"><span class="ch-name">1.2 有理函数与图像</span><span class="ch-stat">6 题 · 89 分</span></button>
+<button type="button" class="ch-btn" data-ch="1.3"><span class="ch-name">1.3 级数求和</span><span class="ch-stat">6 题 · 49 分</span></button>
+<button type="button" class="ch-btn" data-ch="1.4"><span class="ch-name">1.4 矩阵</span><span class="ch-stat">6 题 · 69 分</span></button>
+<button type="button" class="ch-btn" data-ch="1.5"><span class="ch-name">1.5 极坐标</span><span class="ch-stat">6 题 · 81 分</span></button>
+<button type="button" class="ch-btn" data-ch="1.6"><span class="ch-name">1.6 向量</span><span class="ch-stat">6 题 · 72 分</span></button>
+<button type="button" class="ch-btn" data-ch="1.7"><span class="ch-name">1.7 数学归纳法</span><span class="ch-stat">6 题 · 39 分</span></button>
+  </nav>
+  <div class="overview">
+    <h3>章节题号总览</h3>
+    <div id="ovList"></div>
+    <div class="ov-foot" id="ovFoot"></div>
+  </div>
+</aside>
+
+<main class="main">
+  <header class="main-head">
+    <div>
+      <h2 id="chTitle">全部题目</h2>
+      <p class="sub" id="chSub">2025 年 6 月与 11 月考季 · 共 42 题 · 450 分</p>
+    </div>
+    <span class="count" id="count"></span>
+  </header>
+  <div id="cards">
+<article class="q-card" data-ch="1.1" data-search="1.1 题1 2025年6月 · 卷1/2（9231/11）· 第2题 三次方程根的变换与对称函数 多项式方程的根（Roots of polynomial equations）"><div class="q-top"><span class="ch-badge">1.1</span><h3>题1</h3></div><p class="meta">2025年6月 · 卷1/2（9231/11）· 第2题</p><p class="topic">考点：三次方程根的变换与对称函数　|　分值：7分（3+2+2）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c01-q1.jpg" alt="1.1 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c01-q2.jpg" alt="1.1 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c01-a1.jpg" alt="1.1 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.1" data-search="1.1 题2 2025年6月 · 卷3（9231/13）· 第3题 四次方程根的幂和与求和公式综合 多项式方程的根（Roots of polynomial equations）"><div class="q-top"><span class="ch-badge">1.1</span><h3>题2</h3></div><p class="meta">2025年6月 · 卷3（9231/13）· 第3题</p><p class="topic">考点：四次方程根的幂和与求和公式综合　|　分值：9分（2+2+5）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c02-q1.jpg" alt="1.1 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c02-q2.jpg" alt="1.1 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c02-a1.jpg" alt="1.1 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c02-a2.jpg" alt="1.1 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.1" data-search="1.1 题3 2025年6月 · 卷4（9231/14）· 第4题 奇矩阵条件与根的关系求参数 多项式方程的根（Roots of polynomial equations）"><div class="q-top"><span class="ch-badge">1.1</span><h3>题3</h3></div><p class="meta">2025年6月 · 卷4（9231/14）· 第4题</p><p class="topic">考点：奇矩阵条件与根的关系求参数　|　分值：10分（4+6）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c03-q1.jpg" alt="1.1 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c03-q2.jpg" alt="1.1 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c03-a1.jpg" alt="1.1 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.1" data-search="1.1 题4 2025年11月 · 卷1/3（9231/11）· 第4题 四次方程根作线性变换 + 幂和递推 多项式方程的根（Roots of polynomial equations）"><div class="q-top"><span class="ch-badge">1.1</span><h3>题4</h3></div><p class="meta">2025年11月 · 卷1/3（9231/11）· 第4题</p><p class="topic">考点：四次方程根作线性变换 + 幂和递推　|　分值：8分（4+2+2）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c04-q1.jpg" alt="1.1 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c04-q2.jpg" alt="1.1 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c04-a1.jpg" alt="1.1 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c04-a2.jpg" alt="1.1 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.1" data-search="1.1 题5 2025年11月 · 卷2（9231/12）· 第2题 由根的幂和反求三次方程系数 多项式方程的根（Roots of polynomial equations）"><div class="q-top"><span class="ch-badge">1.1</span><h3>题5</h3></div><p class="meta">2025年11月 · 卷2（9231/12）· 第2题</p><p class="topic">考点：由根的幂和反求三次方程系数　|　分值：8分（3+5）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c05-q1.jpg" alt="1.1 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c05-q2.jpg" alt="1.1 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c05-a1.jpg" alt="1.1 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.1" data-search="1.1 题6 2025年11月 · 卷4（9231/14）· 第2题 含倒数关系的根：β+1/β 恒等式 多项式方程的根（Roots of polynomial equations）"><div class="q-top"><span class="ch-badge">1.1</span><h3>题6</h3></div><p class="meta">2025年11月 · 卷4（9231/14）· 第2题</p><p class="topic">考点：含倒数关系的根：β+1/β 恒等式　|　分值：9分（3+2+2+2）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c06-q1.jpg" alt="1.1 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c06-q2.jpg" alt="1.1 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c06-a1.jpg" alt="1.1 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c06-a2.jpg" alt="1.1 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.2" data-search="1.2 题1 2025年6月 · 卷1/2（9231/11）· 第7题 渐近线、驻点、作图、绝对值与不等式 有理函数与图像（Rational functions and graphs）"><div class="q-top"><span class="ch-badge">1.2</span><h3>题1</h3></div><p class="meta">2025年6月 · 卷1/2（9231/11）· 第7题</p><p class="topic">考点：渐近线、驻点、作图、绝对值与不等式　|　分值：15分（2+4+3+1+5）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c07-q1.jpg" alt="1.2 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c07-q2.jpg" alt="1.2 题目图 2"><figcaption>题目 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c07-q3.jpg" alt="1.2 题目图 3"><figcaption>题目 · 图 3</figcaption></figure><figure><img loading="lazy" src="images/c07-q4.jpg" alt="1.2 题目图 4"><figcaption>题目 · 图 4</figcaption></figure><figure><img loading="lazy" src="images/c07-q5.jpg" alt="1.2 题目图 5"><figcaption>题目 · 图 5</figcaption></figure><figure><img loading="lazy" src="images/c07-q6.jpg" alt="1.2 题目图 6"><figcaption>题目 · 图 6</figcaption></figure><figure><img loading="lazy" src="images/c07-q7.jpg" alt="1.2 题目图 7"><figcaption>题目 · 图 7</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c07-a1.jpg" alt="1.2 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c07-a2.jpg" alt="1.2 答案图 2"><figcaption>答案 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c07-a3.jpg" alt="1.2 答案图 3"><figcaption>答案 · 图 3</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.2" data-search="1.2 题2 2025年6月 · 卷3（9231/13）· 第6题 含参数 a 的有理函数全分析 有理函数与图像（Rational functions and graphs）"><div class="q-top"><span class="ch-badge">1.2</span><h3>题2</h3></div><p class="meta">2025年6月 · 卷3（9231/13）· 第6题</p><p class="topic">考点：含参数 a 的有理函数全分析　|　分值：14分（3+3+3+1+4）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c08-q1.jpg" alt="1.2 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c08-q2.jpg" alt="1.2 题目图 2"><figcaption>题目 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c08-q3.jpg" alt="1.2 题目图 3"><figcaption>题目 · 图 3</figcaption></figure><figure><img loading="lazy" src="images/c08-q4.jpg" alt="1.2 题目图 4"><figcaption>题目 · 图 4</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c08-a1.jpg" alt="1.2 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c08-a2.jpg" alt="1.2 答案图 2"><figcaption>答案 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c08-a3.jpg" alt="1.2 答案图 3"><figcaption>答案 · 图 3</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.2" data-search="1.2 题3 2025年6月 · 卷4（9231/14）· 第7题 值域、驻点、作图、绝对值不等式 有理函数与图像（Rational functions and graphs）"><div class="q-top"><span class="ch-badge">1.2</span><h3>题3</h3></div><p class="meta">2025年6月 · 卷4（9231/14）· 第7题</p><p class="topic">考点：值域、驻点、作图、绝对值不等式　|　分值：16分（1+4+3+3+5）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c09-q1.jpg" alt="1.2 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c09-q2.jpg" alt="1.2 题目图 2"><figcaption>题目 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c09-q3.jpg" alt="1.2 题目图 3"><figcaption>题目 · 图 3</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c09-a1.jpg" alt="1.2 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c09-a2.jpg" alt="1.2 答案图 2"><figcaption>答案 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c09-a3.jpg" alt="1.2 答案图 3"><figcaption>答案 · 图 3</figcaption></figure><figure><img loading="lazy" src="images/c09-a4.jpg" alt="1.2 答案图 4"><figcaption>答案 · 图 4</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.2" data-search="1.2 题4 2025年11月 · 卷1/3（9231/11）· 第7题 渐近线、无驻点证明、作图、绝对值不等式 有理函数与图像（Rational functions and graphs）"><div class="q-top"><span class="ch-badge">1.2</span><h3>题4</h3></div><p class="meta">2025年11月 · 卷1/3（9231/11）· 第7题</p><p class="topic">考点：渐近线、无驻点证明、作图、绝对值不等式　|　分值：14分（2+3+3+2+4）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c10-q1.jpg" alt="1.2 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c10-q2.jpg" alt="1.2 题目图 2"><figcaption>题目 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c10-q3.jpg" alt="1.2 题目图 3"><figcaption>题目 · 图 3</figcaption></figure><figure><img loading="lazy" src="images/c10-q4.jpg" alt="1.2 题目图 4"><figcaption>题目 · 图 4</figcaption></figure><figure><img loading="lazy" src="images/c10-q5.jpg" alt="1.2 题目图 5"><figcaption>题目 · 图 5</figcaption></figure><figure><img loading="lazy" src="images/c10-q6.jpg" alt="1.2 题目图 6"><figcaption>题目 · 图 6</figcaption></figure><figure><img loading="lazy" src="images/c10-q7.jpg" alt="1.2 题目图 7"><figcaption>题目 · 图 7</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c10-a1.jpg" alt="1.2 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c10-a2.jpg" alt="1.2 答案图 2"><figcaption>答案 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c10-a3.jpg" alt="1.2 答案图 3"><figcaption>答案 · 图 3</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.2" data-search="1.2 题5 2025年11月 · 卷2（9231/12）· 第7题 斜渐近线、驻点、作图、绝对值不等式 有理函数与图像（Rational functions and graphs）"><div class="q-top"><span class="ch-badge">1.2</span><h3>题5</h3></div><p class="meta">2025年11月 · 卷2（9231/12）· 第7题</p><p class="topic">考点：斜渐近线、驻点、作图、绝对值不等式　|　分值：14分（3+3+3+2+3）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c11-q1.jpg" alt="1.2 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c11-q2.jpg" alt="1.2 题目图 2"><figcaption>题目 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c11-q3.jpg" alt="1.2 题目图 3"><figcaption>题目 · 图 3</figcaption></figure><figure><img loading="lazy" src="images/c11-q4.jpg" alt="1.2 题目图 4"><figcaption>题目 · 图 4</figcaption></figure><figure><img loading="lazy" src="images/c11-q5.jpg" alt="1.2 题目图 5"><figcaption>题目 · 图 5</figcaption></figure><figure><img loading="lazy" src="images/c11-q6.jpg" alt="1.2 题目图 6"><figcaption>题目 · 图 6</figcaption></figure><figure><img loading="lazy" src="images/c11-q7.jpg" alt="1.2 题目图 7"><figcaption>题目 · 图 7</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c11-a1.jpg" alt="1.2 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c11-a2.jpg" alt="1.2 答案图 2"><figcaption>答案 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c11-a3.jpg" alt="1.2 答案图 3"><figcaption>答案 · 图 3</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.2" data-search="1.2 题6 2025年11月 · 卷4（9231/14）· 第7题 斜渐近线、无驻点证明、作图、绝对值不等式 有理函数与图像（Rational functions and graphs）"><div class="q-top"><span class="ch-badge">1.2</span><h3>题6</h3></div><p class="meta">2025年11月 · 卷4（9231/14）· 第7题</p><p class="topic">考点：斜渐近线、无驻点证明、作图、绝对值不等式　|　分值：16分（3+4+3+2+4）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c12-q1.jpg" alt="1.2 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c12-q2.jpg" alt="1.2 题目图 2"><figcaption>题目 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c12-q3.jpg" alt="1.2 题目图 3"><figcaption>题目 · 图 3</figcaption></figure><figure><img loading="lazy" src="images/c12-q4.jpg" alt="1.2 题目图 4"><figcaption>题目 · 图 4</figcaption></figure><figure><img loading="lazy" src="images/c12-q5.jpg" alt="1.2 题目图 5"><figcaption>题目 · 图 5</figcaption></figure><figure><img loading="lazy" src="images/c12-q6.jpg" alt="1.2 题目图 6"><figcaption>题目 · 图 6</figcaption></figure><figure><img loading="lazy" src="images/c12-q7.jpg" alt="1.2 题目图 7"><figcaption>题目 · 图 7</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c12-a1.jpg" alt="1.2 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c12-a2.jpg" alt="1.2 答案图 2"><figcaption>答案 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c12-a3.jpg" alt="1.2 答案图 3"><figcaption>答案 · 图 3</figcaption></figure><figure><img loading="lazy" src="images/c12-a4.jpg" alt="1.2 答案图 4"><figcaption>答案 · 图 4</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.3" data-search="1.3 题1 2025年6月 · 卷1/2（9231/11）· 第1题 标准公式、部分分式、错位相消、无穷和 级数求和（Summation of series）"><div class="q-top"><span class="ch-badge">1.3</span><h3>题1</h3></div><p class="meta">2025年6月 · 卷1/2（9231/11）· 第1题</p><p class="topic">考点：标准公式、部分分式、错位相消、无穷和　|　分值：8分（3+4+1）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c13-q1.jpg" alt="1.3 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c13-q2.jpg" alt="1.3 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c13-a1.jpg" alt="1.3 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.3" data-search="1.3 题2 2025年6月 · 卷3（9231/13）· 第4题 多项式连乘积的错位相消与无穷级数收敛 级数求和（Summation of series）"><div class="q-top"><span class="ch-badge">1.3</span><h3>题2</h3></div><p class="meta">2025年6月 · 卷3（9231/13）· 第4题</p><p class="topic">考点：多项式连乘积的错位相消与无穷级数收敛　|　分值：8分（2+3+3）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c14-q1.jpg" alt="1.3 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c14-q2.jpg" alt="1.3 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c14-a1.jpg" alt="1.3 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c14-a2.jpg" alt="1.3 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.3" data-search="1.3 题3 2025年6月 · 卷4（9231/14）· 第1题 平方型分母的部分分式与错位相消 级数求和（Summation of series）"><div class="q-top"><span class="ch-badge">1.3</span><h3>题3</h3></div><p class="meta">2025年6月 · 卷4（9231/14）· 第1题</p><p class="topic">考点：平方型分母的部分分式与错位相消　|　分值：6分（2+1+2+1）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c15-q1.jpg" alt="1.3 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c15-q2.jpg" alt="1.3 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c15-a1.jpg" alt="1.3 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.3" data-search="1.3 题4 2025年11月 · 卷1/3（9231/11）· 第1题 标准公式、四次方错位相消、无穷和 级数求和（Summation of series）"><div class="q-top"><span class="ch-badge">1.3</span><h3>题4</h3></div><p class="meta">2025年11月 · 卷1/3（9231/11）· 第1题</p><p class="topic">考点：标准公式、四次方错位相消、无穷和　|　分值：9分（3+5+1）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c16-q1.jpg" alt="1.3 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c16-q2.jpg" alt="1.3 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c16-a1.jpg" alt="1.3 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.3" data-search="1.3 题5 2025年11月 · 卷2（9231/12）· 第1题 标准公式因式分解、三项部分分式、错位相消 级数求和（Summation of series）"><div class="q-top"><span class="ch-badge">1.3</span><h3>题5</h3></div><p class="meta">2025年11月 · 卷2（9231/12）· 第1题</p><p class="topic">考点：标准公式因式分解、三项部分分式、错位相消　|　分值：9分（3+5+1）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c17-q1.jpg" alt="1.3 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c17-q2.jpg" alt="1.3 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c17-a1.jpg" alt="1.3 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.3" data-search="1.3 题6 2025年11月 · 卷4（9231/14）· 第3题 三项连乘展开、部分分式、错位相消 级数求和（Summation of series）"><div class="q-top"><span class="ch-badge">1.3</span><h3>题6</h3></div><p class="meta">2025年11月 · 卷4（9231/14）· 第3题</p><p class="topic">考点：三项连乘展开、部分分式、错位相消　|　分值：9分（3+5+1）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c18-q1.jpg" alt="1.3 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c18-q2.jpg" alt="1.3 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c18-a1.jpg" alt="1.3 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.4" data-search="1.4 题1 2025年6月 · 卷1/2（9231/11）· 第4题 复合变换识别与不变点直线 矩阵（Matrices）"><div class="q-top"><span class="ch-badge">1.4</span><h3>题1</h3></div><p class="meta">2025年6月 · 卷1/2（9231/11）· 第4题</p><p class="topic">考点：复合变换识别与不变点直线　|　分值：9分（2+7）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c19-q1.jpg" alt="1.4 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c19-q2.jpg" alt="1.4 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c19-a1.jpg" alt="1.4 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c19-a2.jpg" alt="1.4 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.4" data-search="1.4 题2 2025年6月 · 卷3（9231/13）· 第1题 拉伸+旋转的矩阵、不变直线、逆矩阵 矩阵（Matrices）"><div class="q-top"><span class="ch-badge">1.4</span><h3>题2</h3></div><p class="meta">2025年6月 · 卷3（9231/13）· 第1题</p><p class="topic">考点：拉伸+旋转的矩阵、不变直线、逆矩阵　|　分值：11分（4+5+2）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c20-q1.jpg" alt="1.4 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c20-q2.jpg" alt="1.4 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c20-a1.jpg" alt="1.4 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c20-a2.jpg" alt="1.4 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.4" data-search="1.4 题3 2025年6月 · 卷4（9231/14）· 第5题 拉伸+反射、逆变换、解矩阵方程、不变直线 矩阵（Matrices）"><div class="q-top"><span class="ch-badge">1.4</span><h3>题3</h3></div><p class="meta">2025年6月 · 卷4（9231/14）· 第5题</p><p class="topic">考点：拉伸+反射、逆变换、解矩阵方程、不变直线　|　分值：14分（3+3+3+5）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c21-q1.jpg" alt="1.4 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c21-q2.jpg" alt="1.4 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c21-a1.jpg" alt="1.4 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c21-a2.jpg" alt="1.4 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.4" data-search="1.4 题4 2025年11月 · 卷1/3（9231/11）· 第2题 剪切变换、面积不变、不变直线 矩阵（Matrices）"><div class="q-top"><span class="ch-badge">1.4</span><h3>题4</h3></div><p class="meta">2025年11月 · 卷1/3（9231/11）· 第2题</p><p class="topic">考点：剪切变换、面积不变、不变直线　|　分值：11分（2+2+2+5）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c22-q1.jpg" alt="1.4 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c22-q2.jpg" alt="1.4 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c22-a1.jpg" alt="1.4 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c22-a2.jpg" alt="1.4 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.4" data-search="1.4 题5 2025年11月 · 卷2（9231/12）· 第4题 参数矩阵的变换描述与奇异乘积 矩阵（Matrices）"><div class="q-top"><span class="ch-badge">1.4</span><h3>题5</h3></div><p class="meta">2025年11月 · 卷2（9231/12）· 第4题</p><p class="topic">考点：参数矩阵的变换描述与奇异乘积　|　分值：10分（2+2+6）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c23-q1.jpg" alt="1.4 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c23-q2.jpg" alt="1.4 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c23-a1.jpg" alt="1.4 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c23-a2.jpg" alt="1.4 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.4" data-search="1.4 题6 2025年11月 · 卷4（9231/14）· 第5题 15° 角三角值、旋转×反射、逆矩阵、不变直线 矩阵（Matrices）"><div class="q-top"><span class="ch-badge">1.4</span><h3>题6</h3></div><p class="meta">2025年11月 · 卷4（9231/14）· 第5题</p><p class="topic">考点：15° 角三角值、旋转×反射、逆矩阵、不变直线　|　分值：14分（1+1+4+2+6）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c24-q1.jpg" alt="1.4 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c24-q2.jpg" alt="1.4 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c24-a1.jpg" alt="1.4 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c24-a2.jpg" alt="1.4 答案图 2"><figcaption>答案 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c24-a3.jpg" alt="1.4 答案图 3"><figcaption>答案 · 图 3</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.5" data-search="1.5 题1 2025年6月 · 卷1/2（9231/11）· 第5题 螺旋线、面积、距极轴最远点 极坐标（Polar coordinates）"><div class="q-top"><span class="ch-badge">1.5</span><h3>题1</h3></div><p class="meta">2025年6月 · 卷1/2（9231/11）· 第5题</p><p class="topic">考点：螺旋线、面积、距极轴最远点　|　分值：13分（2+6+5）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c25-q1.jpg" alt="1.5 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c25-q2.jpg" alt="1.5 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c25-a1.jpg" alt="1.5 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c25-a2.jpg" alt="1.5 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.5" data-search="1.5 题2 2025年6月 · 卷3（9231/13）· 第7题 r^2=f(θ) 型：最远点、面积、作图 极坐标（Polar coordinates）"><div class="q-top"><span class="ch-badge">1.5</span><h3>题2</h3></div><p class="meta">2025年6月 · 卷3（9231/13）· 第7题</p><p class="topic">考点：r^2=f(θ) 型：最远点、面积、作图　|　分值：16分（5+5+3+3）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c26-q1.jpg" alt="1.5 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c26-q2.jpg" alt="1.5 题目图 2"><figcaption>题目 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c26-q3.jpg" alt="1.5 题目图 3"><figcaption>题目 · 图 3</figcaption></figure><figure><img loading="lazy" src="images/c26-q4.jpg" alt="1.5 题目图 4"><figcaption>题目 · 图 4</figcaption></figure><figure><img loading="lazy" src="images/c26-q5.jpg" alt="1.5 题目图 5"><figcaption>题目 · 图 5</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c26-a1.jpg" alt="1.5 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c26-a2.jpg" alt="1.5 答案图 2"><figcaption>答案 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c26-a3.jpg" alt="1.5 答案图 3"><figcaption>答案 · 图 3</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.5" data-search="1.5 题3 2025年6月 · 卷4（9231/14）· 第6题 r=atan(θ/8) 螺旋、面积、最远点方程 极坐标（Polar coordinates）"><div class="q-top"><span class="ch-badge">1.5</span><h3>题3</h3></div><p class="meta">2025年6月 · 卷4（9231/14）· 第6题</p><p class="topic">考点：r=atan(θ/8) 螺旋、面积、最远点方程　|　分值：13分（3+4+6）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c27-q1.jpg" alt="1.5 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c27-q2.jpg" alt="1.5 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c27-a1.jpg" alt="1.5 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c27-a2.jpg" alt="1.5 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.5" data-search="1.5 题4 2025年11月 · 卷1/3（9231/11）· 第6题 玫瑰线 r=sin3θ：对称、面积、最远距离、直角坐标 极坐标（Polar coordinates）"><div class="q-top"><span class="ch-badge">1.5</span><h3>题4</h3></div><p class="meta">2025年11月 · 卷1/3（9231/11）· 第6题</p><p class="topic">考点：玫瑰线 r=sin3θ：对称、面积、最远距离、直角坐标　|　分值：15分（3+4+5+3）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c28-q1.jpg" alt="1.5 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c28-q2.jpg" alt="1.5 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c28-a1.jpg" alt="1.5 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c28-a2.jpg" alt="1.5 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.5" data-search="1.5 题5 2025年11月 · 卷2（9231/12）· 第5题 r^2=tan2θ：最远点、面积、直角坐标 极坐标（Polar coordinates）"><div class="q-top"><span class="ch-badge">1.5</span><h3>题5</h3></div><p class="meta">2025年11月 · 卷2（9231/12）· 第5题</p><p class="topic">考点：r^2=tan2θ：最远点、面积、直角坐标　|　分值：12分（2+4+4+2）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c29-q1.jpg" alt="1.5 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c29-q2.jpg" alt="1.5 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c29-a1.jpg" alt="1.5 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c29-a2.jpg" alt="1.5 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.5" data-search="1.5 题6 2025年11月 · 卷4（9231/14）· 第6题 r=cos(θ/2)：面积、距极轴最远距离 极坐标（Polar coordinates）"><div class="q-top"><span class="ch-badge">1.5</span><h3>题6</h3></div><p class="meta">2025年11月 · 卷4（9231/14）· 第6题</p><p class="topic">考点：r=cos(θ/2)：面积、距极轴最远距离　|　分值：12分（2+4+6）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c30-q1.jpg" alt="1.5 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c30-q2.jpg" alt="1.5 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c30-a1.jpg" alt="1.5 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c30-a2.jpg" alt="1.5 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.6" data-search="1.6 题1 2025年6月 · 卷1/2（9231/11）· 第6题 平面方程、两面夹角、异面直线距离 向量（Vectors）"><div class="q-top"><span class="ch-badge">1.6</span><h3>题1</h3></div><p class="meta">2025年6月 · 卷1/2（9231/11）· 第6题</p><p class="topic">考点：平面方程、两面夹角、异面直线距离　|　分值：16分（5+4+7）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c31-q1.jpg" alt="1.6 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c31-q2.jpg" alt="1.6 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c31-a1.jpg" alt="1.6 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c31-a2.jpg" alt="1.6 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.6" data-search="1.6 题2 2025年6月 · 卷3（9231/13）· 第5题 参数式平面、垂足、直线与平面夹角 向量（Vectors）"><div class="q-top"><span class="ch-badge">1.6</span><h3>题2</h3></div><p class="meta">2025年6月 · 卷3（9231/13）· 第5题</p><p class="topic">考点：参数式平面、垂足、直线与平面夹角　|　分值：11分（4+4+3）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c32-q1.jpg" alt="1.6 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c32-q2.jpg" alt="1.6 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c32-a1.jpg" alt="1.6 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c32-a2.jpg" alt="1.6 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.6" data-search="1.6 题3 2025年6月 · 卷4（9231/14）· 第3题 平面方程、点到平面距离、直线与平面夹角 向量（Vectors）"><div class="q-top"><span class="ch-badge">1.6</span><h3>题3</h3></div><p class="meta">2025年6月 · 卷4（9231/14）· 第3题</p><p class="topic">考点：平面方程、点到平面距离、直线与平面夹角　|　分值：10分（5+2+3）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c33-q1.jpg" alt="1.6 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c33-q2.jpg" alt="1.6 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c33-a1.jpg" alt="1.6 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.6" data-search="1.6 题4 2025年11月 · 卷1/3（9231/11）· 第5题 参数式平面、点到平面距离、两面交线 向量（Vectors）"><div class="q-top"><span class="ch-badge">1.6</span><h3>题4</h3></div><p class="meta">2025年11月 · 卷1/3（9231/11）· 第5题</p><p class="topic">考点：参数式平面、点到平面距离、两面交线　|　分值：11分（4+3+4）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c34-q1.jpg" alt="1.6 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c34-q2.jpg" alt="1.6 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c34-a1.jpg" alt="1.6 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c34-a2.jpg" alt="1.6 答案图 2"><figcaption>答案 · 图 2</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.6" data-search="1.6 题5 2025年11月 · 卷2（9231/12）· 第6题 点到平面距离、两面夹角、公垂线方程 向量（Vectors）"><div class="q-top"><span class="ch-badge">1.6</span><h3>题5</h3></div><p class="meta">2025年11月 · 卷2（9231/12）· 第6题</p><p class="topic">考点：点到平面距离、两面夹角、公垂线方程　|　分值：14分（2+4+8）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c35-q1.jpg" alt="1.6 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c35-q2.jpg" alt="1.6 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c35-a1.jpg" alt="1.6 答案图 1"><figcaption>答案 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c35-a2.jpg" alt="1.6 答案图 2"><figcaption>答案 · 图 2</figcaption></figure><figure><img loading="lazy" src="images/c35-a3.jpg" alt="1.6 答案图 3"><figcaption>答案 · 图 3</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.6" data-search="1.6 题6 2025年11月 · 卷4（9231/14）· 第4题 平面方程、异面直线最短距离 向量（Vectors）"><div class="q-top"><span class="ch-badge">1.6</span><h3>题6</h3></div><p class="meta">2025年11月 · 卷4（9231/14）· 第4题</p><p class="topic">考点：平面方程、异面直线最短距离　|　分值：10分（5+5）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c36-q1.jpg" alt="1.6 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c36-q2.jpg" alt="1.6 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c36-a1.jpg" alt="1.6 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.7" data-search="1.7 题1 2025年6月 · 卷1/2（9231/11）· 第3题 递推数列的归纳证明与整除性 数学归纳法（Proof by induction）"><div class="q-top"><span class="ch-badge">1.7</span><h3>题1</h3></div><p class="meta">2025年6月 · 卷1/2（9231/11）· 第3题</p><p class="topic">考点：递推数列的归纳证明与整除性　|　分值：7分（5+2）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c37-q1.jpg" alt="1.7 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c37-q2.jpg" alt="1.7 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c37-a1.jpg" alt="1.7 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.7" data-search="1.7 题2 2025年6月 · 卷3（9231/13）· 第2题 整除性归纳（模 46） 数学归纳法（Proof by induction）"><div class="q-top"><span class="ch-badge">1.7</span><h3>题2</h3></div><p class="meta">2025年6月 · 卷3（9231/13）· 第2题</p><p class="topic">考点：整除性归纳（模 46）　|　分值：6分</p><div class="qb q-text"><figure><img loading="lazy" src="images/c38-q1.jpg" alt="1.7 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c38-q2.jpg" alt="1.7 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c38-a1.jpg" alt="1.7 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.7" data-search="1.7 题3 2025年6月 · 卷4（9231/14）· 第2题 高阶导数的归纳证明（x ln x） 数学归纳法（Proof by induction）"><div class="q-top"><span class="ch-badge">1.7</span><h3>题3</h3></div><p class="meta">2025年6月 · 卷4（9231/14）· 第2题</p><p class="topic">考点：高阶导数的归纳证明（x ln x）　|　分值：6分</p><div class="qb q-text"><figure><img loading="lazy" src="images/c39-q1.jpg" alt="1.7 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c39-q2.jpg" alt="1.7 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c39-a1.jpg" alt="1.7 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.7" data-search="1.7 题4 2025年11月 · 卷1/3（9231/11）· 第3题 高阶导数的归纳证明（x cos x，奇数次） 数学归纳法（Proof by induction）"><div class="q-top"><span class="ch-badge">1.7</span><h3>题4</h3></div><p class="meta">2025年11月 · 卷1/3（9231/11）· 第3题</p><p class="topic">考点：高阶导数的归纳证明（x cos x，奇数次）　|　分值：7分</p><div class="qb q-text"><figure><img loading="lazy" src="images/c40-q1.jpg" alt="1.7 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c40-q2.jpg" alt="1.7 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c40-a1.jpg" alt="1.7 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.7" data-search="1.7 题5 2025年11月 · 卷2（9231/12）· 第3题 递推不等式 u_n&lt;5 与单调性 数学归纳法（Proof by induction）"><div class="q-top"><span class="ch-badge">1.7</span><h3>题5</h3></div><p class="meta">2025年11月 · 卷2（9231/12）· 第3题</p><p class="topic">考点：递推不等式 u_n&lt;5 与单调性　|　分值：8分（5+3）</p><div class="qb q-text"><figure><img loading="lazy" src="images/c41-q1.jpg" alt="1.7 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c41-q2.jpg" alt="1.7 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c41-a1.jpg" alt="1.7 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+<article class="q-card" data-ch="1.7" data-search="1.7 题6 2025年11月 · 卷4（9231/14）· 第1题 指数不等式归纳 数学归纳法（Proof by induction）"><div class="q-top"><span class="ch-badge">1.7</span><h3>题6</h3></div><p class="meta">2025年11月 · 卷4（9231/14）· 第1题</p><p class="topic">考点：指数不等式归纳　|　分值：5分</p><div class="qb q-text"><figure><img loading="lazy" src="images/c42-q1.jpg" alt="1.7 题目图 1"><figcaption>题目 · 图 1</figcaption></figure><figure><img loading="lazy" src="images/c42-q2.jpg" alt="1.7 题目图 2"><figcaption>题目 · 图 2</figcaption></figure></div><div class="qb a-text"><figure><img loading="lazy" src="images/c42-a1.jpg" alt="1.7 答案图 1"><figcaption>答案 · 图 1</figcaption></figure></div></article>
+  </div>
+  <p class="foot">双击本页离线可用 · 图片来自剑桥原卷与官方评分标准</p>
+</main>
+</div>
+
+<script>
+var CHAPTERS = [{"num": "1.1", "name": "多项式方程的根（Roots of polynomial equations）", "count": 6, "total": 51, "rows": [{"title": "题1", "src": "2025年6月 · 卷1/2（9231/11）· 第2题", "marks": "7"}, {"title": "题2", "src": "2025年6月 · 卷3（9231/13）· 第3题", "marks": "9"}, {"title": "题3", "src": "2025年6月 · 卷4（9231/14）· 第4题", "marks": "10"}, {"title": "题4", "src": "2025年11月 · 卷1/3（9231/11）· 第4题", "marks": "8"}, {"title": "题5", "src": "2025年11月 · 卷2（9231/12）· 第2题", "marks": "8"}, {"title": "题6", "src": "2025年11月 · 卷4（9231/14）· 第2题", "marks": "9"}]}, {"num": "1.2", "name": "有理函数与图像（Rational functions and graphs）", "count": 6, "total": 89, "rows": [{"title": "题1", "src": "2025年6月 · 卷1/2（9231/11）· 第7题", "marks": "15"}, {"title": "题2", "src": "2025年6月 · 卷3（9231/13）· 第6题", "marks": "14"}, {"title": "题3", "src": "2025年6月 · 卷4（9231/14）· 第7题", "marks": "16"}, {"title": "题4", "src": "2025年11月 · 卷1/3（9231/11）· 第7题", "marks": "14"}, {"title": "题5", "src": "2025年11月 · 卷2（9231/12）· 第7题", "marks": "14"}, {"title": "题6", "src": "2025年11月 · 卷4（9231/14）· 第7题", "marks": "16"}]}, {"num": "1.3", "name": "级数求和（Summation of series）", "count": 6, "total": 49, "rows": [{"title": "题1", "src": "2025年6月 · 卷1/2（9231/11）· 第1题", "marks": "8"}, {"title": "题2", "src": "2025年6月 · 卷3（9231/13）· 第4题", "marks": "8"}, {"title": "题3", "src": "2025年6月 · 卷4（9231/14）· 第1题", "marks": "6"}, {"title": "题4", "src": "2025年11月 · 卷1/3（9231/11）· 第1题", "marks": "9"}, {"title": "题5", "src": "2025年11月 · 卷2（9231/12）· 第1题", "marks": "9"}, {"title": "题6", "src": "2025年11月 · 卷4（9231/14）· 第3题", "marks": "9"}]}, {"num": "1.4", "name": "矩阵（Matrices）", "count": 6, "total": 69, "rows": [{"title": "题1", "src": "2025年6月 · 卷1/2（9231/11）· 第4题", "marks": "9"}, {"title": "题2", "src": "2025年6月 · 卷3（9231/13）· 第1题", "marks": "11"}, {"title": "题3", "src": "2025年6月 · 卷4（9231/14）· 第5题", "marks": "14"}, {"title": "题4", "src": "2025年11月 · 卷1/3（9231/11）· 第2题", "marks": "11"}, {"title": "题5", "src": "2025年11月 · 卷2（9231/12）· 第4题", "marks": "10"}, {"title": "题6", "src": "2025年11月 · 卷4（9231/14）· 第5题", "marks": "14"}]}, {"num": "1.5", "name": "极坐标（Polar coordinates）", "count": 6, "total": 81, "rows": [{"title": "题1", "src": "2025年6月 · 卷1/2（9231/11）· 第5题", "marks": "13"}, {"title": "题2", "src": "2025年6月 · 卷3（9231/13）· 第7题", "marks": "16"}, {"title": "题3", "src": "2025年6月 · 卷4（9231/14）· 第6题", "marks": "13"}, {"title": "题4", "src": "2025年11月 · 卷1/3（9231/11）· 第6题", "marks": "15"}, {"title": "题5", "src": "2025年11月 · 卷2（9231/12）· 第5题", "marks": "12"}, {"title": "题6", "src": "2025年11月 · 卷4（9231/14）· 第6题", "marks": "12"}]}, {"num": "1.6", "name": "向量（Vectors）", "count": 6, "total": 72, "rows": [{"title": "题1", "src": "2025年6月 · 卷1/2（9231/11）· 第6题", "marks": "16"}, {"title": "题2", "src": "2025年6月 · 卷3（9231/13）· 第5题", "marks": "11"}, {"title": "题3", "src": "2025年6月 · 卷4（9231/14）· 第3题", "marks": "10"}, {"title": "题4", "src": "2025年11月 · 卷1/3（9231/11）· 第5题", "marks": "11"}, {"title": "题5", "src": "2025年11月 · 卷2（9231/12）· 第6题", "marks": "14"}, {"title": "题6", "src": "2025年11月 · 卷4（9231/14）· 第4题", "marks": "10"}]}, {"num": "1.7", "name": "数学归纳法（Proof by induction）", "count": 6, "total": 39, "rows": [{"title": "题1", "src": "2025年6月 · 卷1/2（9231/11）· 第3题", "marks": "7"}, {"title": "题2", "src": "2025年6月 · 卷3（9231/13）· 第2题", "marks": "6"}, {"title": "题3", "src": "2025年6月 · 卷4（9231/14）· 第2题", "marks": "6"}, {"title": "题4", "src": "2025年11月 · 卷1/3（9231/11）· 第3题", "marks": "7"}, {"title": "题5", "src": "2025年11月 · 卷2（9231/12）· 第3题", "marks": "8"}, {"title": "题6", "src": "2025年11月 · 卷4（9231/14）· 第1题", "marks": "5"}]}];
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.q-card'));
+  var activeCh = 'all';
+  var query = '';
+  function esc(s){ var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+  function ovRows(ch){
+    var html = '';
+    var data = CHAPTERS.filter(function(c){ return c.num === ch; })[0];
+    if (!data) return '';
+    data.rows.forEach(function(r){
+      html += '<div class="ov-row"><span class="ov-t">' + esc(r.title) + '</span>'
+           + '<span class="ov-s">' + esc(r.src) + '</span>'
+           + '<span class="ov-m">' + esc(r.marks + '分') + '</span></div>';
+    });
+    return html;
+  }
+  function render(){
+    var n = 0;
+    var searching = query.length > 0;
+    cards.forEach(function(card){
+      var ok = true;
+      if (!searching && activeCh !== 'all') ok = (card.getAttribute('data-ch') === activeCh);
+      if (ok && searching) {
+        var hay = (card.getAttribute('data-search') + ' ' + card.textContent).toLowerCase();
+        ok = hay.indexOf(query) !== -1;
+      }
+      card.classList.toggle('hidden', !ok);
+      if (ok) n++;
+    });
+    document.getElementById('count').textContent = '显示 ' + n + ' / ' + cards.length + ' 题';
+    var title, sub;
+    if (searching) {
+      title = '搜索结果';
+      sub = '关键词：“' + query + '” · 共 ' + n + ' 题';
+      document.getElementById('ovList').innerHTML = '';
+      document.getElementById('ovFoot').textContent = '';
+    } else if (activeCh === 'all') {
+      title = '全部题目';
+      sub = '2025 年 6 月与 11 月考季 · 共 42 题 · 450 分';
+      document.getElementById('ovList').innerHTML = CHAPTERS.map(function(c){
+        return '<div class="ov-row"><span class="ov-t">' + esc(c.num) + '</span>'
+             + '<span class="ov-s">' + esc(c.name.split('（')[0]) + '</span>'
+             + '<span class="ov-m">' + c.count + '题</span></div>';
+      }).join('');
+      document.getElementById('ovFoot').textContent = '7 章 · 42 题 · 450 分';
+    } else {
+      var data = CHAPTERS.filter(function(c){ return c.num === activeCh; })[0];
+      title = data.num + '  ' + data.name;
+      sub = data.count + ' 题 · ' + data.total + ' 分 · 点击左侧章节标签切换';
+      document.getElementById('ovList').innerHTML = ovRows(activeCh);
+      document.getElementById('ovFoot').textContent = data.count + ' 题 · 共 ' + data.total + ' 分';
+    }
+    document.getElementById('chTitle').textContent = title;
+    document.getElementById('chSub').textContent = sub;
+  }
+  function setMode(m){
+    document.body.className = m === 'answer' ? 'mode-answer' : 'mode-question';
+    document.getElementById('tabQ').classList.toggle('active', m !== 'answer');
+    document.getElementById('tabA').classList.toggle('active', m === 'answer');
+    document.getElementById('tabQ').setAttribute('aria-pressed', m !== 'answer');
+    document.getElementById('tabA').setAttribute('aria-pressed', m === 'answer');
+  }
+  document.getElementById('tabQ').addEventListener('click', function(){ setMode('question'); });
+  document.getElementById('tabA').addEventListener('click', function(){ setMode('answer'); });
+  Array.prototype.forEach.call(document.querySelectorAll('.ch-btn'), function(btn){
+    btn.addEventListener('click', function(){
+      activeCh = btn.getAttribute('data-ch');
+      Array.prototype.forEach.call(document.querySelectorAll('.ch-btn'), function(b){
+        b.classList.toggle('active', b === btn);
+      });
+      render();
+    });
+  });
+  var timer = null;
+  document.getElementById('search').addEventListener('input', function(){
+    var v = this.value.trim().toLowerCase();
+    clearTimeout(timer);
+    timer = setTimeout(function(){ query = v; render(); }, 120);
+  });
+  render();
+})();
+</script>
+</body>
+</html>
